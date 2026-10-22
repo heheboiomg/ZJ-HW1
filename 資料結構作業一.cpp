@@ -1,6 +1,4 @@
-#include <iostream>
-#include <map>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 int M=0,P=0;
@@ -14,8 +12,8 @@ int c_right[] = {1,0}; //往右走一個column
 int r_down[] = {0,1};  //往下走一個row
 
 //由北開始順時鐘方向依序搜八個方向
-int c_any[] = {-1,-1,0,1,1,1,0,-1}; 
-int r_any[] = {0,1,1,1,0,-1,-1,-1};
+int c_any[] = {0,1,1,1,0,-1,-1,-1};
+int r_any[] = {-1,-1,0,1,1,1,0,-1};
 
 //只往右跟往下找的函式
 bool DFS_RightAndDown(int r , int c){
@@ -48,9 +46,8 @@ bool DFS_RightAndDown(int r , int c){
         }
     }
 
-    //如果此路不通就是false，之後就要採用任意方向(往回退的同時把不通的路徑刪掉)
+    //如果此路不通就往回退，之後就要採用任意方向(往回退的同時把不通的路徑刪掉)
     now.pop_back();
-    visited[r][c]=false;
     return false;
 }
 
@@ -79,9 +76,8 @@ bool DFS_Any(int r , int c){
         }
     }
 
-    //如果任意方向再不通，那就是False(兩種方式都無法抵達出口)
+    //如果任意方向再不通，那就是兩種方式都無法抵達出口
     now.pop_back();
-    visited[r][c]=false;
     return false;
 }
 
